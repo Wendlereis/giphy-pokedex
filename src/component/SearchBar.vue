@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h1>Giphy Pokédex</h1>
+  <div>    
     <input type="text" />
     <button type="submit">Search</button>
   </div>

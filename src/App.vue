@@ -1,15 +1,16 @@
 <template>
   <div>
     <vheader></vheader>
-    <vcontent></vcontent>
+    <vcontent v-bind:gifs="gifs"></vcontent>
     <vfooter></vfooter>
   </div>
 </template>
 
 <script>
-  import Vheader from './Header.vue'
-  import Vcontent from './Content.vue'
-  import Vfooter from './Footer.vue'
+  import Vheader from './layout/Header.vue'
+  import Vcontent from './layout/Content.vue'
+  import Vfooter from './layout/Footer.vue'
+  import GiphyAPI from './services/giphyAPI.js'
 
   export default {
     components: {
@@ -17,8 +18,13 @@
     },
     data: () => {
       return {
-        
+        gifs: []
       }
+    }, 
+    mounted: function() {
+      new GiphyAPI().getTrending().then((response) => {
+          this.gifs = response.data.data
+      })
     }
   }
 </script>
