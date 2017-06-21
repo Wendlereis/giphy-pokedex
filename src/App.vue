@@ -1,15 +1,23 @@
 <template>
   <div>
-    <h3>{{ message }}</h3>
-    <input v-model="message" />
+    <vheader></vheader>
+    <vcontent></vcontent>
+    <vfooter></vfooter>
   </div>
 </template>
 
 <script>
-  module.exports = {
+  import Vheader from './Header.vue'
+  import Vcontent from './Content.vue'
+  import Vfooter from './Footer.vue'
+
+  export default {
+    components: {
+      Vheader, Vcontent, Vfooter
+    },
     data: () => {
       return {
-        message: 'Segura o bind'
+        
       }
     }
   }
