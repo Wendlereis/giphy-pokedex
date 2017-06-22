@@ -11,11 +11,21 @@ export default class GiphyAPI {
         })
     }
 
-    search(query) {
+    search(parameters) {
+        let defaultParameters = {
+            query: '',
+            page: 0,
+            perPage: 10
+        }
+
+        let result = Object.assign({}, defaultParameters, parameters)
+
         return axios.get(this.buildUrl('gifs/search'), { 
             params: {
                 api_key: this.apiKey,
-                q: query
+                q: result.query,
+                limit: result.perPage,
+                offset: result.page * result.perPage
             }
         })
     }

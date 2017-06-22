@@ -1,7 +1,7 @@
 <template>
   <div>
     <img v-for="gif in gifs"
-        v-bind:src="gif.images.fixed_height.url"/>
+        v-bind:src="gif.images.fixed_width_small.url"/>
   </div>
 </template>
 
