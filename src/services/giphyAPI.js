@@ -12,7 +12,7 @@ export default class GiphyAPI {
     }
 
     search(query) {
-        return axios.get(this.buildUrl('search'), { 
+        return axios.get(this.buildUrl('gifs/search'), { 
             params: {
                 api_key: this.apiKey,
                 q: query

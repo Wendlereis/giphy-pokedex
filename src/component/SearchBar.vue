@@ -1,7 +1,7 @@
 <template>
   <div>    
-    <input type="text" />
-    <button type="submit">Search</button>
+    <input type="text" v-model="gifName"/>
+    <button type="submit" v-on:click="searchByName">Search</button>
   </div>
 </template>
 
@@ -9,7 +9,13 @@
   export default {
     data: () => {
       return {
-        
+        gifName: ''
+      }
+    },
+    methods: {
+      searchByName: function() {
+        this.$emit('searchByName', this.gifName)
+        console.log('searchBar')
       }
     }
   }
