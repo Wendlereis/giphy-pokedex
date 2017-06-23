@@ -1,12 +1,15 @@
 <template>
-  <div>
+  <div class="col-md-10 offset-md-1">
     <h1>Giphy Pokédex</h1>
     <search-bar @searchByName="updateQuery"></search-bar>
     <vcontent :gifs="gifs"></vcontent>
-    <pagination :totalPages="totalPages"
+    <div class="pagination">
+      <pagination :totalPages="totalPages"
                 :currentPage="currentPage"
                 :limit="5"
                 @selectedPage="updatePage" />
+    </div>
+    
     <vfooter></vfooter>
   </div>
 </template>
@@ -61,10 +64,20 @@
 </script>
 
 <style lang="sass">
-  $font-stack: Helvetica, sans-serif
-  $primary-color: #ff0
-  
+  @import url('https://fonts.googleapis.com/css?family=Amatic+SC')
+
   body
-    font: 100% $font-stack
-    color: $primary-color
- </style>
+    background: #2c2d2d
+
+  h1
+    text-transform: uppercase
+    text-align: center
+    margin: 50px
+    font-family: 'Amatic SC'
+    font-size: 80px
+    color: #fff
+
+  .pagination
+    margin: 0 auto
+
+</style>

@@ -1,15 +1,14 @@
 <template>
-  <div v-if="totalPages">
-    <button v-if="currentPage !== 0"
+  <div class="pagination" v-if="totalPages">
+    <button class="btn" v-if="currentPage !== 0"
             @click="emitPagination(currentPage - 1)">
       Prev
     </button>
-    <button style="margin-left: 10px"
-            v-for="page in pageRange"
+    <button class="btn" v-for="page in pageRange"
             @click="emitPagination(page - 1)">
       {{page == currentPage + 1 ? `(${page})` : page}}
     </button>
-    <button v-if="currentPage !== totalPages"
+    <button class="btn" v-if="currentPage !== totalPages"
             @click="emitPagination(currentPage + 1)">
       Next
     </button>
@@ -36,7 +35,12 @@
   }
 </script>
  
-<style lang="sass">
+<style lang="sass" scoped>
+  .pagination
+    display: inline-block
 
- </style>
- 
+    button
+      background-color: #4CAF50
+      color: white
+      margin-left: 10px
+</style>

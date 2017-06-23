@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <input type="text" v-model="gifName"/>
-    <button type="submit" v-on:click="searchByName">Search</button>
+  <div class="container">
+    <div class="row">
+      <input class="form-control form-control-lg" type="text" v-model="gifName"></input>
+      <button class="btn btn-primary btn-lg" type="submit" v-on:click="searchByName">Search</button>
+    </div>   
   </div>
 </template>
 
@@ -20,6 +22,25 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="sass" scoped>
+  $btnSearch: #7342af
 
+  .form-control-lg
+    width: 80%
+  
+  .btn
+    width: 18%
+    margin: 0 5px
+    background: transparent
+    border: 2px solid #fff
+    cursor: pointer
+  
+    &:hover
+      background: $btnSearch
+      border-color: $btnSearch
+      color: #fff
+    
+    &:focus
+      box-shadow: initial
+      
 </style>
