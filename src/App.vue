@@ -1,9 +1,12 @@
 <template>
   <div>
-    <h1>Giphy Pokédex</h1>    
-    <search-bar v-on:searchByName="searchByName"></search-bar>
-    <vcontent v-bind:gifs="gifs"></vcontent>
-    <pagination v-bind:totalPages="totalPages" v-bind:currentPage="currentPage" v-on:selectedPage="updatePage"></pagination>
+    <h1>Giphy Pokédex</h1>
+    <search-bar @searchByName="updateQuery"></search-bar>
+    <vcontent :gifs="gifs"></vcontent>
+    <pagination :totalPages="totalPages"
+                :currentPage="currentPage"
+                :limit="5"
+                @selectedPage="updatePage" />
     <vfooter></vfooter>
   </div>
 </template>
@@ -24,9 +27,9 @@
         gifs: [],
         totalPages: 0,
         currentPage: 0,
-        searchQuery: '' 
+        searchQuery: ''
       }
-    }, 
+    },
     mounted: function () {
       this.trending()
     },
@@ -36,32 +39,32 @@
           this.gifs = response.data.data
         })
       },
-      searchByName: function(event) {
+      updateQuery: function(event) {
+        this.currentPage = 0
         this.searchQuery = event
-
-        new GiphyAPI().search({query:event, page:this.currentPage}).then((response) => {
-          let pagination = response.data.pagination
-          this.gifs = response.data.data
-          
-          this.totalPages = Math.ceil(pagination.total_count / pagination.count)
-          this.currentPage = pagination.offset
-        })
+        this.searchGifs()
       },
-      updatePage:function(event) {
-        event * 10
-
-        new GiphyAPI().search({query:this.searchQuery, page:event}).then((response) => {
+      updatePage: function(event) {
+        this.currentPage = event
+        this.searchGifs()
+      },
+      searchGifs: function() {
+        new GiphyAPI().search({ query: this.searchQuery, page: this.currentPage }).then((response) => {
           let pagination = response.data.pagination
           this.gifs = response.data.data
-          
-          this.totalPages = Math.ceil(pagination.total_count / pagination.count)
-          this.currentPage = pagination.offset
+
+          this.totalPages = Math.ceil(pagination.total_count / response.params.perPage)
         })
       }
     }
   }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="sass">
+  $font-stack: Helvetica, sans-serif
+  $primary-color: #ff0
+  
+  body
+    font: 100% $font-stack
+    color: $primary-color
+ </style>

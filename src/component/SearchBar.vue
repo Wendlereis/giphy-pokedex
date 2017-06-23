@@ -1,5 +1,5 @@
 <template>
-  <div>    
+  <div>
     <input type="text" v-model="gifName"/>
     <button type="submit" v-on:click="searchByName">Search</button>
   </div>
@@ -15,7 +15,6 @@
     methods: {
       searchByName: function() {
         this.$emit('searchByName', this.gifName)
-        console.log('searchBar')
       }
     }
   }
