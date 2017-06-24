@@ -29,6 +29,6 @@ export default class GiphyAPI {
   }
 
   buildUrl(path) {
-    return `http://api.giphy.com/v1/${path}`
+    return `https://api.giphy.com/v1/${path}`
   }
 }
