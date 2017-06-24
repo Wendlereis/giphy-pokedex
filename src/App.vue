@@ -57,6 +57,8 @@
           this.gifs = response.data.data
 
           this.totalPages = Math.ceil(pagination.total_count / response.params.perPage)
+
+          window.scrollTo(0, 0)
         })
       }
     }
@@ -79,5 +81,4 @@
 
   .pagination
     margin: 0 auto
-
 </style>

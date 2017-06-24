@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <input class="form-control form-control-lg" type="text" v-model="gifName"></input>
+      <input class="form-control form-control-lg" type="text" v-bind:placeholder="placeholder" v-model="gifName"></input>
       <button class="btn btn-primary btn-lg" type="submit" v-on:click="searchByName">Search</button>
     </div>   
   </div>
@@ -11,7 +11,8 @@
   export default {
     data: () => {
       return {
-        gifName: ''
+        gifName: '',
+        placeholder: 'Search all the GIFs'
       }
     },
     methods: {
@@ -27,6 +28,7 @@
 
   .form-control-lg
     width: 80%
+    text-transform: uppercase
   
   .btn
     width: 18%
@@ -35,12 +37,12 @@
     border: 2px solid #fff
     cursor: pointer
   
-    &:hover
+    &:hover, &:focus
       background: $btnSearch
       border-color: $btnSearch
       color: #fff
     
     &:focus
       box-shadow: initial
-      
+            
 </style>

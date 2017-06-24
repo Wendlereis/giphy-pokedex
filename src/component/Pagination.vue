@@ -2,15 +2,16 @@
   <div class="pagination" v-if="totalPages">
     <button class="btn" v-if="currentPage !== 0"
             @click="emitPagination(currentPage - 1)">
-      Prev
+      <i class="fa fa-angle-double-left" aria-hidden="true"></i>
     </button>
     <button class="btn" v-for="page in pageRange"
             @click="emitPagination(page - 1)">
-      {{page == currentPage + 1 ? `(${page})` : page}}
+      <label v-if="page == currentPage + 1" class="btn-active">{{page}}</label>
+      <label v-else>{{page}}</label>
     </button>
     <button class="btn" v-if="currentPage !== totalPages"
             @click="emitPagination(currentPage + 1)">
-      Next
+      <i class="fa fa-angle-double-right" aria-hidden="true"></i>
     </button>
   </div>
 </template>
@@ -18,6 +19,11 @@
 <script>
   export default {
     props: ['currentPage', 'totalPages', 'limit'],
+    data: () => {
+      return {
+        isActive: true
+      }
+    },
     methods: {
       emitPagination: function(selectedPage) {
         this.$emit('selectedPage', selectedPage)
@@ -36,11 +42,31 @@
 </script>
  
 <style lang="sass" scoped>
+  $btnSearch: #7342af
+  $white: #fff
+
   .pagination
     display: inline-block
 
-    button
-      background-color: #4CAF50
-      color: white
+    .btn
+      background: transparent
+      
+      cursor: pointer
       margin-left: 10px
+      color: $white
+  
+      &:hover,
+        background: $btnSearch
+        border-color: $btnSearch
+        color: $white
+      
+      &:focus
+        box-shadow: initial
+    
+    .btn-active 
+      color: $btnSearch
+      font-weight: bold    
+
+    label
+      margin: 0
 </style>

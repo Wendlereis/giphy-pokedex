@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="gif-box" v-for="gif in gifs">
-      <button class="clipboard" v-clipboard:copy="gif.images.fixed_width.url">
+      <button class="clipboard" v-bind:title="copyClipboardTitle" v-clipboard:copy="gif.images.fixed_width.url">
         <i class="fa fa-clipboard" aria-hidden="true"></i>
       </button>
       <img v-bind:src="gif.images.fixed_width.url"/>
@@ -12,7 +12,12 @@
 <script>
 
   export default {
-    props: ['gifs']
+    props: ['gifs'],
+    data: () => {
+      return {
+        copyClipboardTitle: 'Copy to Clipboard'
+      }
+    }
   }
 </script>
 
